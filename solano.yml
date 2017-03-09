@@ -6,17 +6,24 @@ nodejs:
 
 # Build setup http://docs.solanolabs.com/Setup/setup-hooks/
 hooks:
-  pre_setup: |
-    set -o errexit -o pipefail  # Exit on error
-    # Install yarn if it isn't already present
-    if [ ! -d $HOME/.yarn ]; then
-      curl -o- -L https://yarnpkg.com/install.sh | bash
-    fi
-    mkdir -p $HOME/bin  # Automatically in $PATH on workers
-    ln -fs $HOME/.yarn/bin/yarn $HOME/bin/yarn
-    yarn --version
-    # Install packages using yarn
-    yarn install
+
+  # pre_setup hook using Solano worker's installed 'yarn':
+  pre_setup: yarn install
+
+  # pre_setup hook using a specific version of 'yarn':
+  #pre_setup: |
+  #  set -o errexit -o pipefail  # Exit on error
+  #  # Install yarn if it isn't already present
+  #  if [ ! -d $HOME/.yarn ]; then
+  #    wget https://yarnpkg.com/install.sh -0 $TMPDIR/yarn-install.sh
+  #    chmod +x $TMPDIR/yarn-install.sh
+  #    $TMPDIR/yarn-install.sh --version 0.18.2
+  #  fi
+  #  mkdir -p $HOME/bin  # Automatically in $PATH on workers
+  #  ln -fs $HOME/.yarn/bin/yarn $HOME/bin/yarn
+  #  yarn --version
+  #  # Install packages using yarn
+  #  yarn install
 
 # Include $HOME/.yarn in cache
 # http://docs.solanolabs.com/Setup/caching-dependencies/
