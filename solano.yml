@@ -15,7 +15,7 @@ hooks:
   #  set -o errexit -o pipefail  # Exit on error
   #  # Install yarn if it isn't already present
   #  if [ ! -d $HOME/.yarn ]; then
-  #    wget https://yarnpkg.com/install.sh -0 $TMPDIR/yarn-install.sh
+  #    wget https://yarnpkg.com/install.sh -O $TMPDIR/yarn-install.sh
   #    chmod +x $TMPDIR/yarn-install.sh
   #    $TMPDIR/yarn-install.sh --version 0.18.2
   #  fi
